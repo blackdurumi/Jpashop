@@ -48,6 +48,7 @@ public class MemberApiController {
 
 	@Data
 	@AllArgsConstructor
+
 	static class MemberDto {
 		private String name;
 	}

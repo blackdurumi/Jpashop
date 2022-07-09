@@ -15,7 +15,7 @@
         - cascade를 설정하면 연관관계가 있는 엔티티 간에 영속성이 전이됨
     2. 연관관계 메소드
         - 연관관계가 있는 Entity의 변경사항을 같이 처리해주는 메소드를 만들자
-    3. 모든 연관관계는 지연로딩(FetchType.EAGER)으로 설정해야함1
+    3. 모든 연관관계는 지연로딩(FetchType.EAGER)으로 설정해야 함
 2. Repository - Service - Controller 계층형 구조에서의 개발
     1. Repository에서는 EntityManager를 통한 데이터 접근, 비즈니스 로직 구현
     2. Service에서는 Repository의 메소드를 이용하여 Entity에 필요한 것을 요청하는 메소드 구현
@@ -43,3 +43,5 @@
     - 변경이 필요한 필드만 처리하기 위해 DTO를 이용하자
 
 ### 활용 2편
+
+1. API 요청 값으로 Entity 자체를 받아오는 것이 아닌, API 스펙에 맞게 DTO를 만들어 받아야 함
