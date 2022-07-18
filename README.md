@@ -3,7 +3,7 @@
 ## 참고 자료
 
 [실전! 스프링 부트와 JPA 활용 1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/)<br>
-[실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94#)<br>
+[실전! 스프링 부트와 JPA 활용 2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94#)<br>
 
 ## 배운 내용
 
@@ -97,5 +97,17 @@ fetch join을 사용하자
         2. DB 데이터 전송량을 줄여준다; 중복된 값 전달이 없어진다.
         3. 페이징이 가능하다.
 4. DTO로 직접 조회
-    1. 루트 쿼리에서 toOne 관계는 fetch join으로 한번에 불러오고 toMany는 별도 메소드와 DTO로 각각 조회한다.
-5. 
+    1. 루트 쿼리에서 toOne 관계는 fetch join으로 한번에 불러오고 toMany는 별도 메소드와 DTO로 각각 조회한다.(1+N)
+    2. Map을 이용하여 컬렉션 조회에 사용될 필드를 리스트로 전달하여 in 쿼리문으로 한번에 조회할 수 있다.(1+1)
+5. 총정리
+    1. fetch join과 hibernate.default_batch_fetch_size를 이용한 Entity 조회 방식을 우선 적용
+    2. 이후 DTO로 조회하는 방식 도입을 고민하자.
+
+#### OSIV(Open Session In View)
+
+@Transaction이 시작되어 DB connection을 가져오고 transaction이 끝나고 바로 반환하는 것이 아닌,<br>
+유저에게 화면이 표시되거나 API 응답이 갈 때까지 connection을 들고 있다가 반환한다.
+
+너무 오랫동안 DB connection resource를 들고있기 때문에 트래픽이 많은 서비스에서는 connection이 모자르게 되고 장애가 발생한다.
+
+OSIV를 끄면 모든 지연로딩을 transaction 내에서 처리해야 한다.
