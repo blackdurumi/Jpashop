@@ -15,7 +15,7 @@
         - cascade를 설정하면 연관관계가 있는 엔티티 간에 영속성이 전이됨
     2. 연관관계 메소드
         - 연관관계가 있는 Entity의 변경사항을 같이 처리해주는 메소드를 만들자
-    3. 모든 연관관계는 지연로딩(FetchType.EAGER)으로 설정해야 함
+    3. 모든 연관관계는 지연로딩(FetchType.LAZY)으로 설정해야 함
         - Why? 연관관계가 필요없는 경우에도 항상 데이터를 조회하기 때문에 성능 저하 유발
 2. Repository - Service - Controller 계층형 구조에서의 개발
     1. Repository에서는 EntityManager를 통한 데이터 접근, 비즈니스 로직 구현
